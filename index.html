@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Bullet Trajector Calculator</title>
+    <link rel="stylesheet" href="css/bulletprogram.css"> 
+  </head>
+  <body>
+  <div id="wrapper">
+    <header>
+      <h1>Ballistics Calculator</h1>
+    </header>
+    
+    <form id="bulletCalculator">
+      <label for="bulletVelocityField">Bullet Velocity</label>
+      <input type="number" step = "0.1" min = 0 
+      id="bulletVelocityField" required = "required" 
+      placeholder = "meters per second">
+      
+      <label for="bulletFireAngleField">Angle of Shot</label>
+      <input type="number" step = "0.01" min = 0
+      id="bulletFireAngleField" required = "required" 
+      placeholder = "nearest degrees">
+      
+      <label for="bulletPositionRangeField">Range for Bullet Verticle location</label>
+      <input type="number" step = "0.1" min = 0
+      id="bulletPositionRangeField" required = "required" 
+      placeholder = "nearest meters">
+      
+      <label for="roundValueField">Round</label>
+      <input type="text" id="roundValueField" placeholder = "yes or no">
+      
+      <input type="submit" value="Calculate">
+    </form>
+    
+    <h2>Information Entered</h2>
+    <div id="MyNumbers">Numbers Entered</div>
+    <h2>Results from Calculator</h2>  
+    <div id="MyResults">Results</div>
+    <div id="MyDropRate">Bullet Drop</div>
+    <h4>All calculations only factor in gravity, and meant for use as a reference guide.<br>
+       Only for use when shot and target are on level ground.<br>
+       Units of measure in meters and seconds.</h4>
+    
+  </div>
+  <script src="js/bulletprogram2.js"></script>
+  </body>
+</html>

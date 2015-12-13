@@ -1,0 +1,267 @@
+Bullet Trajectory Program:
+
+The program prompts for the velocity of a round fired from a gun along with the 
+ground.  It then asks if the user would like to know where the bullet will be at
+a give distance. The program will display the calculated results for the total 
+distance flown, total time in flight, and height of the bullet at the given distances.
+(previous version name bulletprogram.js)
+
+Nouns: bullet velocity, bullet height, angle, distances, total, time, height
+
+
+
+Verbs: prompt, calculate, display
+
+
+Inputs:
+  bulletVelocity
+  bulletFireHeight
+  bulletDropRange
+  
+Processes:
+  calculate totalDistance
+  calculate totalTime
+  calculate bulletDrop
+
+Output
+  totalDistance
+  totalTime
+  bulletDrop
+
+  
+
+BulletTrajectoryCalculator:
+  Initialize bulletDropRange
+  Initialize bulletDrop
+  Initialize bulletFireHeight
+  Initialize bulletVelocity
+  Initialize gravity = 9.8
+  Initialize loopCount
+  Initialize numberCalculated
+  Initialize totalDistance
+  Initialize totalTime
+
+  
+  prompt user for numberCalculated with "How many calculations would you like to make?"
+  
+  
+  FOR loopCount = 0; loopCount < numberCalculated
+    Prompt user for bulletVelocity with "Please enter the bullet velocity in meters per second."
+    Prompt user for bulletFireHeight with "Please enter the initial bullet height at launch in meters."
+    Prompt user for bulletDropRange "At what range do you want to know the bullet drop."
+    
+    Convert bulletVelocity to a number
+    Convert bulletFireHeight to a number
+    Convert bulletDropRange to a number
+    IF bulletVelocity > 0 && bulletFireHeight > 0 && bulletDropRange > 0
+      IF bulletVelocity is a number, bulletFireHeight is a number, bulletDropRange is a number
+        set output to "For a trajectory with a launch velocity of " +
+                  launchVelocity + " m/s, shoot at a height " + heightFiringPosition +
+                  " meter(s) off the ground on a flat trajectory:"
+                   
+        Call TotalDistance with totalDistance = TotalBulletDistance(bulletFireHeight, bulletVelocity, gravity)
+        Call TotalBulletTime with totalTime = TotalBulletTime(bulletFireHeight, bulletVelocity, gravity)
+        Call BulletHeightAtDistanceX with bulletDrop = (bulletFireHeight, bulletVelocity, bulletDropRange, gravity)
+        Append output with "Total bullet flight time: " + totalFightTime +
+                       " seconds.\n"+ "Total distance: " + totalDistance +
+                       " meters.  At the distance of " + bulletDropRange +
+                       " the bullet drop " + bulletDrop
+      Add one to loopCount
+    ELSE
+      Alert user with "Entries not valid, please try again."
+      ELSE 
+        Alert user with "Entries not valid, please try again."
+      ENDIF
+    ENDIF
+  END
+
+TotalBulletDistance
+  set result to 0
+  result  = bulletVelocity * Math.sqrt(2 * bulletFireHeight)/ gravity);
+  return result
+END
+
+TotalBulletTime
+  set result to 0
+  result = Math.sqrt((2 * heightFiringPosition)/gravity)
+  return result
+END
+
+BulletHeightAtDistanceX
+  set result to 0
+  result = (bulletDropRange / totalDistance) * bulletFireHeight
+  IF result > bulletFireHeight
+    result = " has already hit the ground."
+  ENDIF
+  return result
+END
+
+TEST CASES
+
+VARIABLES: INPUT:bulletVelocity, bulletFireHeight, bullDropRange
+           OUTPUT: totalDistance, totalTime, bullDrop
+
+CASE 1
+
+INPUTS: 500, 1, 100
+
+EXP: 72.15375318, .1443075064, bullet hit the ground
+
+ACTUAL 
+
+CASE 2
+
+INPUTS:  950, 1, 100
+
+EXP: 137.092131, 1.443075064, .72  
+
+ACTUAL  
+
+CASE 3  
+
+INPUTS: 20000, 1, 2
+
+EXP: 5772.300255, .0638876565, 3.465003465 e-04
+
+ACTUAL Won't calculate on new prgram
+
+CASE 4
+
+INPUTS: eric, $, %
+
+EXP: NaN, NaN, NaN
+
+ACTUAL NaN, NaN, NaN
+
+CASE 5
+
+INPUTS: 5.634, 34, 1
+
+EXP: will not calculate
+
+ACTUAL will not calculate
+
+CASE 6
+
+INPUTS: -450, -1, 0
+
+EXP: Will not calculate
+
+ACTUAL Will Not calculate
+
+CASE 7
+
+INPUTS: 20 m/s, 20 degrees, 100m
+
+EXP: NaN, NaN, NaN
+
+ACTUAL NaN, NaN, NaN
+
+OLD PROGRAM WASN'T SUFFICIENT
+(NEW PROGRAM WRITTEN)
+
+NEW PROGRAM TESTING
+NOTE: NO FOR LOOP NEEDED WITH FORM USEAGE. NEW FILE NAME bulletprogram2.js
+
+INPUTS VARIABLES: bulletVelocity, bulletFireAngle, bulletPostionRange, roundValue
+OUTPUTS VARIABLES: totalTime, totalDistance, bulletMaxHeight, bulletPostion
+CASE 1:
+
+INPUTS: 900, 30, 1, yes
+
+EXP: 9.837, 71579.651, 10331.633
+
+ACTUAL: 9.837, 71579.651, 10331.633
+
+CASE 2:
+
+INPUT: %, #, !, #
+
+EXP: wont let you do these
+
+ACTUAL: wont let you do these
+
+CASE 3:
+
+INPUT: -200, 1, 1, no
+
+EXP: Can't calculate negative numbers
+
+ACTUAL: Alerts "Firing velocity can only be calculated between 0 and 1112"
+
+CASE 4:
+
+INPUT: 2, -33, 1, no
+
+EXP: Can't calculate negative angles
+
+ACTUAL: Alerts "Firing angle must be between 0 and 90 degrees"
+
+CASE 5:
+
+INPUT: 100, 30, -5, no
+
+EXP: Can't calculate ranges
+
+ACTUAL: Alerts "Range of bullet must be a positive number"
+
+CASE 6:
+
+INPUT: 100, 1, 900, yes
+
+EXP: 0.357, 35.612, 0.156, 0
+
+ACTUAL: EXP: 0.357, 35.612, 0.156, 0
+
+
+60 degrees and 30 degress should be the same distances
+
+CASE 7: 
+
+INPUT: 100, 30, 1, yes
+
+EXP: 10.205, 883.7, 125.552, 0.577
+
+ACTUAL: 10.205, 883.7, 125.552, 0.577
+
+CASE 8:
+
+INPUT: 100, 60, 1, yes
+
+EXP: 17.674, 883.7, 382.654, 1.731
+
+ACTUAL: 17.674, 883.7, 382.654, 1.731
+
+CASE 9:
+
+INPUT: 100, 60, 1, YES
+
+EXP: won't round values
+
+ACTUAL: didn't round the values as expected
+(fixed casing issue)
+
+CASE 10:
+
+INPUT: 100, 60, 1, YES
+
+EXP: 17.674, 883.7, 382.654, 1.731
+
+ACTUAL: 17.674, 883.7, 382.654, 1.731
+
+CASE 11:
+
+INPUT: 3.45, 45.6, .123, NO
+
+EXP: won't let you put in anything but whole numbers
+
+ACTUAL: nearest whole numbers only
+(fixed form range to allow for decimals points)
+
+CASE 12:
+
+INPUT: 3.4, 45.65, 1, YES
+
+EXP: 0.497, 1.18, 0.302, 0.156
+
+ACTUAL: 0.497, 1.18, 0.302, 0.156

@@ -1,0 +1,51 @@
+#wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  background-color: #FFFFFF;
+  box-shadow: 5px 5px 5px #000000;
+}
+
+body {
+  margin-top: 140px;
+  background-color: #999999;
+}
+
+label {
+  display: block;
+  float: center;
+}
+
+input[type="submit"]{
+  float: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  
+}
+
+h1 {
+  font-family: Impact, Ariels;
+  text-align: center;
+  height: 60px;
+}
+
+p {
+  text-align: center;
+}
+
+h2 {
+  font-family: Ariels;
+  text-align: center;
+  height: 30px;
+}
+
+div {
+  text-align: center;
+  text-decoration: bold;
+}
+
+h4 {
+  color: #ff0000;
+}
